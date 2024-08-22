@@ -20,12 +20,18 @@ jobs:
       
       - name: Build wlroots
         run: meson setup build && ninja -C build
-        working-directory: ./wlroots
+        working-directory: wlroots
       
       - name: Build dwl
         run: |
           echo 'WLR_INCS = -I/usr/include/pixman-1 -I/usr/include/elogind -I/usr/include/libdrm -I$(PWD)/../wlroots/include' >> config.mk
           echo 'WLR_LIBS = -Wl,-rpath,$(PWD)/../wlroots/build -L$(PWD)/../wlroots/build -lwlroots-0.19' >> config.mk
+          echo 'XWAYLAND = -DXWAYLAND' >> config.mk
+          echo 'XLIBS = xcb xcb-icccm' >> config.mk
           make
-        working-directory: ./dwl
-          
+        working-directory: dwl
+
+      - name: Upload dwl
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dwl/dwl
