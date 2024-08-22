@@ -11,9 +11,6 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: archlinux/archlinux:latest
-    defaults:
-      run:
-        working-directory: .dwl
     steps:
       - uses: actions/checkout@v4
         with:
