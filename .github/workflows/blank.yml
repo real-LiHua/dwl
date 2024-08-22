@@ -40,7 +40,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           path: |
-            wlroots/libwlroots-0.19.so
+            wlroots/build/libwlroots-0.19.so
             dwl/dwl
 
       - uses: softprops/action-gh-release@v2
