@@ -23,6 +23,9 @@ jobs:
         working-directory: ./wlroots
       
       - name: Build dwl
-        run: make
+        run: |
+          echo 'WLR_INCS = -I/usr/include/pixman-1 -I/usr/include/elogind -I/usr/include/libdrm -I$(PWD)/../wlroots/include' >> config.mk
+          echo 'WLR_LIBS = -Wl,-rpath,$(PWD)/../wlroots/build -L$(PWD)/../wlroots/build -lwlroots-0.19' >> config.mk
+          make
         working-directory: ./dwl
           
