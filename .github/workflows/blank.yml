@@ -7,8 +7,6 @@ jobs:
   Sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          repository: 'dwl/dwl'
-          ref: 'main'
-          github-server-url: 'https://codeberg.org'
+      - run: |
+          git clone https://codeberg.org/dwl/dwl .
+          rm -rf .git
