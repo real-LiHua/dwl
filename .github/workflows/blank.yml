@@ -13,11 +13,16 @@ jobs:
       image: archlinux/archlinux:latest
       options: --privileged
     steps:
-      - run: pacman --noconfirm -Sy base-devel git wayland-protocols wlroots xorg-xwayland
+      - run: pacman -Sy --needed --noconfirm base-devel git meson wayland-protocols wlroots xorg-xwayland
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-      - name: Build
+      
+      - name: Build wlroots
+        run: meson setup build && ninja -C build
+        working-directory: ./wlroots
+      
+      - name: Build dwl
         run: make
         working-directory: ./dwl
           
