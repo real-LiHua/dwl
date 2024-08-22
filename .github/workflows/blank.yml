@@ -18,7 +18,7 @@ jobs:
           path: /var/cache/pacman/pkg
           key: ${{ runner.os }}
   
-      - run: pacman -Sy --needed --noconfirm base-devel git meson wayland-protocols wlroots xorg-xwayland
+      - run: pacman -Sy --needed --noconfirm base-devel git meson wayland-protocols wlroots vulkan-headers xorg-xwayland
       
       - uses: actions/checkout@v4
         with:
@@ -39,7 +39,9 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          path: dwl/dwl
+          path: |
+            wlroots/libwlroots-0.19.so
+            dwl/dwl
 
       - uses: softprops/action-gh-release@v2
         if: startsWith(github.ref, 'refs/tags/')
