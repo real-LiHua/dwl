@@ -1,12 +1,12 @@
-name: Sync
+name: Build
 
 on:
   workflow_dispatch:
 
 jobs:
-  Sync:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          git clone https://codeberg.org/dwl/dwl .
-          rm -rf .git
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
