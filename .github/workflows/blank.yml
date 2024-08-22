@@ -11,11 +11,12 @@ jobs:
     runs-on: ubuntu-latest
     container:
       image: archlinux/archlinux:latest
+      options: --privileged
     steps:
+      - run: pacman --noconfirm -Sy git make wayland-protocols wlroots xorg-xwayland
       - uses: actions/checkout@v4
         with:
           submodules: recursive
-      - run: pacman --noconfirm -Sy make wayland-protocols wlroots xorg-xwayland
       - name: Build
         run: make
         working-directory: ./dwl
