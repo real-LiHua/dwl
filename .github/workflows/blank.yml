@@ -1,5 +1,3 @@
-# This is a basic workflow to help you get started with Actions
-
 name: Sync
 
 on:
@@ -12,4 +10,5 @@ jobs:
       - uses: actions/checkout@v4
         with:
           repository: 'dwl/dwl'
+          ref: 'main'
           github-server-url: 'https://codeberg.org'
