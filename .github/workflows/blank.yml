@@ -13,7 +13,7 @@ jobs:
       image: archlinux/archlinux:latest
       options: --privileged
     steps:
-      - run: pacman --noconfirm -Sy git make wayland-protocols wlroots xorg-xwayland
+      - run: pacman --noconfirm -Sy git make pkgconf wayland-protocols wlroots xorg-xwayland
       - uses: actions/checkout@v4
         with:
           submodules: recursive
